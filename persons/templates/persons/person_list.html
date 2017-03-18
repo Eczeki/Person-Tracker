@@ -1,0 +1,47 @@
+{% extends 'persons/layout.html' %}
+{% block content %}
+	<div class="row">
+		<h1>People List</h1>
+	</div>
+	<div class="row">
+        {% if messages %}
+        <div class="alert alert-danger">
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>        
+        {% endif %}
+    </div>
+	<div class="row top-spacing">
+		<a href="/create" class="btn btn-primary">Create Person</a>
+	</div>
+	<div class="row top-spacing">
+		<table class="table table-bordered">		
+			<thead>
+		      <tr>
+		        <th>Firstname</th>
+		        <th>Lastname</th>
+		        <th>Date of Birth</th>
+		        <th>Zip Code</th>
+		        <th>Actions</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    	{% for person in object_list %}
+				    <tr>
+				        <td class="col-md-2">{{ person.first_name }}</td>
+				        <td class="col-md-2">{{ person.last_name }}</td>
+				        <td class="col-md-2">{{ person.date_of_birth }}</td>
+				        <td class="col-md-2">{{ person.zip_code }}</td>
+				        <td class="col-md-2">
+				        	<a href="/edit/{{ person.pk }}" class="btn btn-info">Edit</a>
+				        	<a href="/delete/{{ person.pk }}" class="btn btn-danger">Delete</a>
+				        </td>
+				    </tr>		    
+				{% endfor %}	      
+	    	</tbody>		
+		</table>
+	</div>
+{% endblock %}

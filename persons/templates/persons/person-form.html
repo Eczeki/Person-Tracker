@@ -1,0 +1,22 @@
+{% extends 'persons/layout.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-6">
+		<h1>Create Person</h1>
+		<form action="{{ action }}" method="post" class="form">
+		    {% csrf_token %}
+		    {% bootstrap_form form %}
+		    {% buttons %}
+		        <button type="submit" class="btn btn-primary">
+		            Save
+		        </button>
+		        <a href="/" class="btn btn-danger">
+		        	Cancel
+		        </a>
+		    {% endbuttons %}
+		</form>
+	</div>
+</div>
+{% endblock %}
